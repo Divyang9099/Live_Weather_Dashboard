@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './useAuth';
 
+import { useRef } from 'react';
+
+
 export const useAlerts = () => {
   const [alerts, setAlerts] = useState([]);
   const [notifications, setNotifications] = useState([]);
@@ -72,6 +75,9 @@ export const useAlerts = () => {
   };
 
   const checkAlerts = async (weatherData) => {
+
+const checkTimeoutRef = useRef(null);
+
     // Debounce alert checking to prevent spam
     if (checkAlerts.timeout) {
       clearTimeout(checkAlerts.timeout);
